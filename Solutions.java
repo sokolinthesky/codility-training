@@ -245,3 +245,20 @@ class MinMaxDivision {
         return splits < K;
     }
 }
+// ===============================================
+// ===============================================
+// ===============================================
+class MaxNonoverlappingSegments {
+    public int solution(int[] A, int[] B) {
+        int curPos = -1;
+        int segments = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] > curPos) {
+                curPos = B[i];
+                segments+=1;
+            }
+        }
+        return segments;
+    }
+}
