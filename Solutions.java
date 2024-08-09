@@ -201,3 +201,47 @@ class Brackets {
         return open.isEmpty() ? 1 : 0;
     }
 }
+// ===============================================
+// =============================================== Divide array A into K blocks and minimize the largest sum of any block.
+// ===============================================
+class MinMaxDivision {
+    public int solution(int K, int M, int[] A) {
+        int maxSum = 0;
+        int minSum = 0;
+        for (int n : A) {
+            maxSum+=n;
+            minSum = Math.max(minSum, n);
+        }
+        return binarySearch(K, A, minSum, maxSum); //the main idea is to binary search in range: [M, arraySum]
+    }
+
+    private int binarySearch(int K, int[] A, int minSum, int maxSum) {
+        int res = maxSum;
+        
+        while (minSum <= maxSum) {
+            int mid = (maxSum + minSum) / 2;
+            if (isValid(A, K, mid)) {
+                res = mid;
+                maxSum = mid - 1;
+            } else {
+                minSum = mid + 1;
+            }
+        }
+        return res;
+    }
+
+    private boolean isValid(int[] A, int K, int mid) {
+        int curSum = 0;
+        int splits = 0;
+
+        for (int n : A) {
+            if (curSum + n <= mid) {
+                curSum+=n;
+            } else {
+                curSum = n;
+                splits+=1;
+            }
+        }
+        return splits < K;
+    }
+}
