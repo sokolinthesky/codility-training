@@ -284,7 +284,7 @@ class CarsBridge {
             }
             return skip;
         }
-        //just counts skips, not working for optimal skips count, but redable 
+        //just counts skips, not working for optimal skips count, but readable 
         public int solution_GPT(int U, int[] weight) {
 
             Queue<Integer> bridge = new LinkedList<>();
