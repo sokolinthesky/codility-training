@@ -284,4 +284,33 @@ class CarsBridge {
             }
             return skip;
         }
+        //just counts skips, not working for optimal skips count, but redable 
+        public int solution_GPT(int U, int[] weight) {
+
+            Queue<Integer> bridge = new LinkedList<>();
+            int curWeight = 0;
+            int skip = 0;
+        
+            for (int i = 0; i < weight.length; i++) {
+              if (bridge.size() < 2) {
+        
+                if (curWeight + weight[i] <= U) {
+                  curWeight += weight[i];
+                  bridge.add(weight[i]);
+                } else {
+                  skip += 1;
+                }
+              } else {
+        
+                curWeight -= bridge.poll();
+                if (curWeight + weight[i] <= U) {
+                  curWeight += weight[i];
+                  bridge.add(weight[i]);
+                } else {
+                  skip += 1;
+                }
+              }
+            }
+            return skip;
+  }
 }
