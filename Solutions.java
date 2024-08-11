@@ -262,3 +262,26 @@ class MaxNonoverlappingSegments {
         return segments;
     }
 }
+}
+// ===============================================
+// =============================================== returns the minimum number of drivers that must turn back so that the bridge will not be overloaded.
+// ===============================================
+class CarsBridge {
+        public int solution(int[] cars, int k) { //K - weigth limit, car[i] -> ith car weigth
+            int l = 0;
+            int r = 1;
+            int skip = 0;
+            while (r < cars.length) {
+              if (cars[l] + cars[r] > k) {
+                skip+=1;
+                if (cars[l] > cars[r]) {
+                  l = r;
+                }
+              } else {
+                l = r;
+              }
+              r+=1;
+            }
+            return skip;
+        }
+}
