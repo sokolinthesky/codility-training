@@ -274,7 +274,7 @@ class CarsBridge {
             while (r < cars.length) {
               if (cars[l] + cars[r] > k) {
                 skip+=1;
-                if (cars[l] > cars[r]) {
+                if (cars[l] > cars[r]) { //trick: we are deciding to skip heaviest car
                   l = r;
                 }
               } else {
